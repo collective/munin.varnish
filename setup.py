@@ -7,7 +7,7 @@ history = open(join('docs', 'HISTORY.txt')).read()
 
 setup(name = 'munin.varnish',
       version = version,
-      description = 'Munin tools for Varnish.',
+      description = 'Munin plugins for Varnish.',
       long_description = readme[readme.find('\n\n'):] + '\n' + history,
       classifiers = [
           'Development Status :: 3 - Alpha',
