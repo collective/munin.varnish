@@ -3,6 +3,7 @@
 import os
 import shutil
 import re
+import stat
 
 
 class Recipe(object):
@@ -20,7 +21,11 @@ class Recipe(object):
         dst = os.path.join(
             self.buildout['buildout']['bin-directory'],
             self.name)
-        shutil.copy2(src, dst)
+        shutil.copy(src, dst)
+        os.chmod(dst,
+                 stat.S_IRUSR | stat.S_IRGRP | stat.S_IROTH |
+                 stat.S_IXUSR | stat.S_IXGRP | stat.S_IXOTH |
+                 stat.S_IWUSR )
 
         # Patch script.
         script = open(dst, 'r').read()
