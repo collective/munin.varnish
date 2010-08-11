@@ -8,14 +8,14 @@ Introduction
 A buildout recipe that packages and configures the munin tool
 *varnish_* to enable monitoring of Varnish.
 
-Contains a copy of *varnish_* `r4144 <http://varnish.projects.linpro.no/browser/trunk/varnish-tools/munin/varnish_>`__ created by Kristian Lyngstol which
+Contains a copy of *varnish_* `r4439 <http://varnish-cache.org/browser/trunk/varnish-tools/munin/varnish_?rev=4439>`__ created by Kristian Lyngstol which
 works with Varnish 2.0 or newer.
 
 
 How to use it
 =============
 
-You can use it with at part like this::
+You can use it with a part like this::
 
     [buildout]
     parts =
@@ -55,11 +55,11 @@ Notes
 =====
 
 * A build of *varnishstat* requires the developer's libraries for
-  ncurses. If you don't have a *varnsihstat* in your build of Varnish
+  ncurses. If you don't have a *varnishstat* in your build of Varnish
   then most likely you need to install the ncurses-devel or
   libncurses5-dev package and then get buildout to rebuild Varnish.
 
 * The hit_rate aspect only works correctly with a munin server running
   version 1.4.0 alpha or better. However hit rate data is also
   available in request_rate where it is presented as raw rates rather
-  than normalised as a percentage.
+  than normalized as a percentage.
