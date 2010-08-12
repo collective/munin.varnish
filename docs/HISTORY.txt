@@ -1,11 +1,15 @@
 Changelog
 =========
 
-1.0a3 (unreleased)
+1.0a3 (2010-08-12)
 ------------------
 
-- update to newest revision (r4439) of varnish_
+- update to newest revision (r4439) of *varnish_*
+  [fRiSi]
 
+- add support for monitoring multiple varnish instances
+  on a single host
+  [fRiSi]
 
 1.0a2 (2009-11-26)
 ------------------

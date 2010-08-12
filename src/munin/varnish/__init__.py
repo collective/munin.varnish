@@ -12,6 +12,7 @@ class Recipe(object):
     def __init__(self, buildout, name, options):
         self.buildout, self.name, self.options = buildout, name, options
         self.varnishstat = options['varnishstat']
+        self.instanceName = options.get('name', None)
 
     def install(self):
         """Installer"""
@@ -33,6 +34,13 @@ class Recipe(object):
         script = expression.sub('my $varnishstatexec = "%s";'
                                 % self.varnishstat,
                                 script)
+
+        if self.instanceName:
+            expr = re.compile(r'^my \$graphname = .*$', re.MULTILINE)
+            script = expr.sub('my $graphname = "%s";'
+                            % self.instanceName,
+                            script)
+
         open(dst, 'w').write(script)
 
         # Return files that were created by the recipe. The buildout
