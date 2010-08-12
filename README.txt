@@ -93,6 +93,6 @@ Credits
 
 Michael Dunstan, Author
 
-Harald Frießnegger, added support for multiple instances
+Harald Friessnegger, added support for multiple instances
 
 
