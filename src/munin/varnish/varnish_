@@ -1,18 +1,9 @@
 #!/usr/bin/perl -w
 #
-# varnish_ r4439 (http://varnish-cache.org/browser/trunk/varnish-tools/munin/varnish_?rev=4439)
-# with the following patch applied
-# http://lists.varnish-cache.org/pipermail/varnish-dev/2009-December/002347.html
-# http://lists.varnish-cache.org/pipermail/varnish-dev/attachments/20091216/841e78c9/attachment-0001.txt
-# it seems mixing up the name of the instance with the title of the graph is a bad idea
-# because -n identifies the directory to search for runtime files
-#
-# varnish_ - Munin plugin for multiple Varnish Servers
+# varnish_ - Munin plugin to for Varnish
 # Copyright (C) 2009  Redpill Linpro AS
 #
 # Author: Kristian Lyngstøl <kristian@redpill-linpro.com>
-# Modified by Paul Mansfield so that it can be used
-# with multiple varnish instances
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -30,7 +21,7 @@
 
 =head1 NAME
 
-varnish_ - Munin plugin to monitor various aspects of multiple varnish servers
+varnish_ - Munin plugin to monitor various aspects of varnish
 
 =head1 APPLICABLE SYSTEMS
 
@@ -112,7 +103,6 @@ my $varnishstatexec = exists $ENV{'varnishstat'} ? $ENV{'varnishstat'} : "varnis
 
 # For multiple instances
 my $varnishname = exists $ENV{'name'} ? $ENV{'name'} : undef;
-my $graphname = exists $ENV{'graphname'} ? $ENV{'graphname'} : undef;
 
 my %varnishstat = ();
 my %varnishstatnames = ();
@@ -719,9 +709,7 @@ sub print_if_exist
         $title = $_[3];
     }
     if (defined($values{$value}{$field})) {
-        print "$title $values{$value}{$field}";
-        print " - $graphname" if ($graphname and $title eq 'graph_title');
-        print "\n";
+        print "$title $values{$value}{$field}\n";
     } else {
         return 0;
     }
@@ -764,18 +752,11 @@ sub get_config
     }
 }
 
-# Read and verify the aspect ($self) -
-# the format is varnish_NAME__aspect or varnish_aspect
+# Read and verify the aspect ($self).
 sub set_aspect
 {
     $self = $0;
     $self =~ s/^.*\/varnish_//;
-
-    if ($self =~ /^(\w+)__(.*)$/)
-    {
-        #just ignore the name here $graphname = $1;
-        $self = $2;
-    }
     if (!defined($ASPECTS{$self}) && @ARGV == 0) {
         usage "No such aspect";
     }
@@ -880,5 +861,3 @@ foreach my $value (keys %{$ASPECTS{$self}{'values'}}) {
         print "$varnishstat{$value}\n";
     }
 }
-
-# end varnish_ plugin
