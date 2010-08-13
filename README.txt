@@ -52,6 +52,7 @@ plugins. For example::
     cd /etc/munin/plugins
     ln -s /path/to/buildout/bin/munin-varnish varnish_expunge
 
+
 Monitoring multiple instances
 -----------------------------
 
@@ -64,11 +65,18 @@ graph titles::
     name = Project X
 
 
-In the above Example ``graph_title Object expunging`` would become
+In the above Example calling ``graph_title Object expunging`` would become
 ``graph_title Object expunging - Project X``.
 
-To monitor 2 instances you need to rename your symlinks from
-``varnish_<aspect>`` to ``varnish_<instancename>__aspect``
+To monitor multiple instances you need to be able to put different symlinks
+into your ``etc/munin/plugins/`` directory.
+You can use double underscore in the symlink installation to separate the
+instance name from the aspect.
+The above installation example would become::
+
+    cd /etc/munin/plugins
+    ln -s /path/to/buildout/bin/munin-varnish varnish_projectX__expunge
+
 (**ATTENTION**: note the double underscore!).
 
 We are using a slightly modified version of *varnish_* to support multiple instances.
