@@ -1,6 +1,12 @@
 Changelog
 =========
 
+1.0a4 (unreleased)
+------------------
+
+- Nothing changed yet.
+
+
 1.0a3 (2010-08-16)
 ------------------
 
@@ -10,6 +16,7 @@ Changelog
 - add support for monitoring multiple varnish instances
   on a single host
   [fRiSi]
+
 
 1.0a2 (2009-11-26)
 ------------------
